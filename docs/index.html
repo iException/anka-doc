@@ -2,11 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anka</title>
-</head>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Anka Toolkit</title>
+    <link rel="stylesheet" href="./index.css">
 <body>
-
+    <div class="header">
+        <image src="./logo.png"></image>
+        <div class="divider"></div>
+        <form onSubmit="return search(this)">
+            <input type="text" placeholder="Search ..." name="content">
+        </form>
+    </div>
+    <div class="desc">
+        <div class="desc-main">Anka Toolkit</div>
+        <div class="desc-sub">
+            渐进式小程序开发工具集。提供通用的开发函数库及组件，
+            我们正努力使小程序开发过程变得愉快。
+        </div>
+        <a href="https://github.com/iException?q=anka" class="btn">Github</a>
+        <a href="" class="btn btn--green">开始使用</a>
+    </div>
 </body>
+<script src="./index.js"></script>
 </html>

@@ -1,0 +1,99 @@
+/* --------------- 通用 --------------- */
+.divider {
+    width: 1px;
+    height: 40px;
+    background-color: #C6C6C6;
+}
+
+input[type=text] {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+input[type=text]:focus {
+    outline: none;
+}
+
+.btn {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    width: 124px;
+    height: 36px;
+    line-height: 36px;
+    display: inline-block;
+    border: 1px solid #18C285;
+    color: #18C285;
+    font-size: 14px;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn--green {
+    background-color: #18C285;
+    color: #FFFFFF;
+}
+
+/* --------------- 首页 --------------- */
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    min-width: 1000px;
+    min-height: 625px;
+    overflow: hidden;
+    background: url("https://file.baixing.net/201811/7c309359418087b90d8eee647d4adaa7.png");
+    background-size: cover;
+    font-family: PingFang SC, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+.header {
+    margin: 40px 50px 0;
+    width: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header input[type=text] {
+    height: 28px;
+    font-size: 20px;
+    color: #888888;
+}
+
+.desc {
+    width: 520px;
+    position: absolute;
+    top: 353px;
+    left: 284px;
+    text-align: right;
+}
+
+.desc-main {
+    height: 90px;
+    line-height: 90px;
+    text-align: right;
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.desc-sub {
+    line-height: 37px;
+    margin-top: 10px;
+    text-align: right;
+    font-size: 20px;
+}
+
+.desc .btn {
+    margin-top: 30px;
+    margin-left: 40px;
+}
