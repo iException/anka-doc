@@ -49,8 +49,9 @@ body {
     min-width: 1000px;
     min-height: 625px;
     overflow: hidden;
-    background: url("https://file.baixing.net/201811/7c309359418087b90d8eee647d4adaa7.png");
+    background: url("./bg.svg");
     background-size: cover;
+    background-position: center center;
     font-family: PingFang SC, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -73,8 +74,10 @@ body {
 .desc {
     width: 520px;
     position: absolute;
-    top: 353px;
-    left: 284px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+    transition: 0ms !important;
     text-align: right;
 }
 

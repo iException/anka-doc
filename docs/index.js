@@ -1,4 +1,4 @@
 function search (e) {
-    console.log(e.content.value)
+    location.pathname = `/?q=${e.content.value}`
     return false
 }

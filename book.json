@@ -1,0 +1,10 @@
+{
+  "author": "iException",
+  "plugins": [
+    "-sharing",
+    "theme-oasis"
+  ],
+  "styles": {
+    "website": "styles/website.css"
+  }
+}
