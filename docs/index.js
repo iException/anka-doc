@@ -1,4 +1,4 @@
 function search (e) {
-    location.pathname = `/?q=${e.content.value}`
+    window.location.replace(`${window.location.href}/book?q=${e.content.value}`)
     return false
 }
