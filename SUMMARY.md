@@ -18,11 +18,11 @@
 
 ## Canvas绘图
 
-  * [安装与使用](https://github.com/iException/anka-brush)
+  * [Brush](./library/brush.md)
 
 ## 数据打点
 
-  * [安装与使用](https://github.com/iException/anka-tracker)
+  * [Tracker](./library/tracker.md)
 
 
 # UI组件库 （coming soon..）

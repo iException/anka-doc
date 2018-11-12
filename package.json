@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "gitbook serve",
-    "build": "rm -R docs/book && mkdir docs/book && gitbook build && cp -R _book/**/* docs/book"
+    "build": "del docs/book && gitbook build && ncp _book/ docs/book"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "gitbook-cli": "^2.3.2"
+    "del-cli": "^1.1.0",
+    "gitbook-cli": "^2.3.2",
+    "ncp": "^2.0.0"
   },
   "dependencies": {
     "gitbook-plugin-theme-oasis": "0.0.2"

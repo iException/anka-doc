@@ -5,3 +5,7 @@
 **/.project
 **/.DS_Store
 /node_modules
+.gitignore
+.bookignore
+package.json
+package-lock.json
