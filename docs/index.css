@@ -95,14 +95,12 @@ body {
 
 .desc-sub {
     line-height: 37px;
-    margin-top: 10px;
-    text-align: right;
+    margin: 10px 0 30px 0;
     font-size: 20px;
     color: #35393B;
 }
 
-.desc .btn {
-    margin-top: 30px;
+.desc .btn:last-of-type {
     margin-left: 40px;
 }
 .desc p {
