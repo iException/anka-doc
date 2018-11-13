@@ -226,7 +226,7 @@ $ anka prod
 # 样式文件处理
 
 Anka 默认支持 PostCSS 和 Sass。
-所以，我们能将 `src/paegs/home/home.wxss` 改为 `src/paegs/home/home.css`，并且在里面引入其他的 css 文件。需要区别的是，这里有两种引入方式：
+所以，我们能将 `src/pages/home/home.wxss` 改为 `src/pages/home/home.css`，并且在里面引入其他的 css 文件。需要区别的是，这里有两种引入方式：
 
 - `@import "./_var.css";`
 - `@wximport "./sub.css";`
@@ -239,4 +239,4 @@ Anka 内部使用了 Babel 7，所以我们可以通过修改 `babel.config.json
 
 # typescript
 
-同上，Anka 内置了对 `TypeScript` 的支持，我们依然可以通过修改 `tsconfig.json` 覆盖默认配置。
+同上，Anka 内置了对 `TypeScript` 的支持，我们依然可以通过在 `anka-quickstart/` 目录下添加 `tsconfig.json` 覆盖默认配置。

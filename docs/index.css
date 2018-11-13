@@ -1,4 +1,8 @@
 /* --------------- 通用 --------------- */
+* {
+    box-sizing: border-box;
+}
+
 .divider {
     width: 1px;
     height: 40px;
@@ -16,7 +20,6 @@ input[type=text]:focus {
 }
 
 .btn {
-    box-sizing: border-box;
     padding: 0;
     margin: 0;
     width: 124px;
@@ -58,9 +61,10 @@ body {
 }
 
 .header {
-    margin: 40px 50px 0;
-    width: 420px;
     display: flex;
+    width: 420px;
+    max-width: 100%;
+    padding: 40px 0 0 50px;
     align-items: center;
     justify-content: space-between;
 }
@@ -72,10 +76,11 @@ body {
 }
 
 .desc {
-    width: 520px;
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 520px;
+    max-width: 100%;
     transform: translate(-100%, -50%);
     transition: 0ms !important;
     text-align: right;
@@ -84,7 +89,6 @@ body {
 .desc-main {
     height: 90px;
     line-height: 90px;
-    text-align: right;
     font-size: 64px;
     font-weight: 600;
 }
@@ -94,9 +98,46 @@ body {
     margin-top: 10px;
     text-align: right;
     font-size: 20px;
+    color: #35393B;
 }
 
 .desc .btn {
     margin-top: 30px;
     margin-left: 40px;
+}
+.desc p {
+    margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .header {
+        display: block;
+        padding: 2rem 0 0 2rem;
+    }
+
+    .divider {
+        width: 0;
+        height: 1rem;
+    }
+
+    .desc {
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        padding: 1rem;
+        text-align: center;
+        transform: translate(0, -50%);
+    }
+
+    .desc-main {
+        font-size: 44px;
+    }
+
+    .desc-sub {
+        font-size: 14px;
+    }
+
+    .desc p {
+        display: inline;
+    }
 }

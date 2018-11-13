@@ -28,7 +28,7 @@ $ npm install @anka-dev/brush --save
 
 # 在小程序中使用
 
-1. 如果是第一次在小程序中使用 npm 包，那么先需要 `npm init`，然后再按小程序官网的流程操作一遍，[点我](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)去查看小程序中 `npm 教程
+1. 如果是第一次在小程序中使用 npm 包，那么先需要 `npm init`，然后再按小程序官网的流程操作一遍，[点我](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)去查看小程序中 `npm` 教程
 
 2. 小程序中 `npm` 构建之后在对应需要使用小程序 `canvas` 功能的 js 页面中在 `page({})` 前引入，`const Brush = require('@anka-dev/brush')` 即可。
 
