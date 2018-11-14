@@ -16,7 +16,7 @@
 
 anka-tracker 会将打点任务缓存到队列中，对打点任务做限流处理，避免占用太多HTTP请求导致业务逻辑请求无法顺利完成。另外，当离线或应用关闭时任务会被暂停，直到重新连线/重启后，tracker 会继续先前未完成的任务。
 
-详细配置见 [types.d.ts](https://github.com/iException/anka-tracker/blob/dev/src/types/types.d.ts)
+详细配置见 [src/types/types.d.ts](https://github.com/iException/anka-tracker/blob/dev/src/types/types.d.ts)
 
 适用于小程序/小游戏。
 
@@ -26,7 +26,7 @@ anka-tracker 会将打点任务缓存到队列中，对打点任务做限流处�
 
 以下两种安装方式随意选择:
 
-- 通过 npm 安装: `npm install @anka-dev/tracker --save`
+- 通过 npm 安装: `$ npm install @anka-dev/tracker --save`
 - 下载该仓库下 dist/anka-tracker.min.js 文件
 
 ## 初始化
@@ -54,8 +54,7 @@ anka-tracker 会将打点任务缓存到队列中，对打点任务做限流处�
 
 ```javascript
 /* app.js */
-
-const { tracker } = require('@anka-dev/tracker')
+const { tracker } = require('./anka-tracker.js')
 ```
 
 并在恰当的时机初始化：
@@ -85,7 +84,7 @@ onLaunch (options) {
 除上面的示例之外，你也可以选择用更灵活的方式初始化：
 
 ```javascript
-const { BxTracker } = require('@anka-dev/tracker')
+const { BxTracker } = require('./anka-tracker.js')
 const tracker = BxTracker.generateTrackerInstance({
     // 在这里传入配置，而不使用 anka-tracker.config.js
     detectChanel: false,
@@ -111,9 +110,24 @@ getApp().tracker.pv('__viewPage', {
 })
 ```
 
-值得注意的是，目前在iOS机型上，小程序 `onHide` 事件中，`setTimeout` 不会在预期的时间触发，回调函数会被冻结直到小程序触发 `onShow` 钩子。换句话说，`setTimeout(() => {console.log('hello anka!')}, 2000)` 不会在小程序 `onHide` 触发后（`onShow` 之前）输出 `hello anka!`。
+值得 **注意** 的是，目前在iOS机型上，小程序 `onHide` 事件中，`setTimeout` 不会在预期的时间触发，回调函数会被冻结直到小程序触发 `onShow` 钩子。换句话说，
 
-对于这样的情况，我们可以使用 `forceEvt` 方法强制执行一次打点请求。与 `evt` 不同的是，`forceEvt` 会立刻执行请求，不论成功与否均不会重试。通常情况下，不建议使用这个 API。
+```javascript
+setTimeout(() => {
+	console.log('hello anka!')
+}, 2000)
+```
+
+不会在小程序 `onHide` 触发后（`onShow` 之前）输出 `hello anka!`。
+
+对于这样的情况，我们可以使用 `forceEvt` 方法强制执行一次打点请求。与 `evt` 不同的是，`forceEvt` 会立刻执行请求，不论成功与否均不会重试。通常情况下，不建议使用此 API。
+
+```javascript
+getApp().tracker.forceEvt('click_btn', {
+	page_id: this.pageId,
+	custom_data: 'custom_data'
+})
+```
 
 # 参考
 
