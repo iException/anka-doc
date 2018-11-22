@@ -121,6 +121,10 @@ export const plugins: PluginsConfigration = [
     }
 ]
 
+/**
+ * Files that will be ignored in compilation.
+ */
+export const ignored: IgnoredConfigration = []
 
 /*****************************************************
  *               experimental configure

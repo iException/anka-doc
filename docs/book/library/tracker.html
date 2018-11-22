@@ -368,13 +368,13 @@
 <p>&#x5C0F;&#x7A0B;&#x5E8F;&#x6253;&#x70B9;&#x5E93;&#xFF0C;&#x7528;&#x4E8E;&#x7EDF;&#x8BA1;&#x7528;&#x6237;&#x884C;&#x4E3A;&#x6570;&#x636E;&#x3002;<a href="https://github.com/iException/anka-tracker" target="_blank">Github &#x5730;&#x5740;</a></p>
 <h1 id="&#x529F;&#x80FD;">&#x529F;&#x80FD;</h1>
 <p>anka-tracker &#x4F1A;&#x5C06;&#x6253;&#x70B9;&#x4EFB;&#x52A1;&#x7F13;&#x5B58;&#x5230;&#x961F;&#x5217;&#x4E2D;&#xFF0C;&#x5BF9;&#x6253;&#x70B9;&#x4EFB;&#x52A1;&#x505A;&#x9650;&#x6D41;&#x5904;&#x7406;&#xFF0C;&#x907F;&#x514D;&#x5360;&#x7528;&#x592A;&#x591A;HTTP&#x8BF7;&#x6C42;&#x5BFC;&#x81F4;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x8BF7;&#x6C42;&#x65E0;&#x6CD5;&#x987A;&#x5229;&#x5B8C;&#x6210;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x5F53;&#x79BB;&#x7EBF;&#x6216;&#x5E94;&#x7528;&#x5173;&#x95ED;&#x65F6;&#x4EFB;&#x52A1;&#x4F1A;&#x88AB;&#x6682;&#x505C;&#xFF0C;&#x76F4;&#x5230;&#x91CD;&#x65B0;&#x8FDE;&#x7EBF;/&#x91CD;&#x542F;&#x540E;&#xFF0C;tracker &#x4F1A;&#x7EE7;&#x7EED;&#x5148;&#x524D;&#x672A;&#x5B8C;&#x6210;&#x7684;&#x4EFB;&#x52A1;&#x3002;</p>
-<p>&#x8BE6;&#x7EC6;&#x914D;&#x7F6E;&#x89C1; <a href="https://github.com/iException/anka-tracker/blob/dev/src/types/types.d.ts" target="_blank">types.d.ts</a></p>
+<p>&#x8BE6;&#x7EC6;&#x914D;&#x7F6E;&#x89C1; <a href="https://github.com/iException/anka-tracker/blob/dev/src/types/types.d.ts" target="_blank">src/types/types.d.ts</a></p>
 <p>&#x9002;&#x7528;&#x4E8E;&#x5C0F;&#x7A0B;&#x5E8F;/&#x5C0F;&#x6E38;&#x620F;&#x3002;</p>
 <h1 id="&#x4F7F;&#x7528;">&#x4F7F;&#x7528;</h1>
 <h2 id="&#x5B89;&#x88C5;">&#x5B89;&#x88C5;</h2>
 <p>&#x4EE5;&#x4E0B;&#x4E24;&#x79CD;&#x5B89;&#x88C5;&#x65B9;&#x5F0F;&#x968F;&#x610F;&#x9009;&#x62E9;:</p>
 <ul>
-<li>&#x901A;&#x8FC7; npm &#x5B89;&#x88C5;: <code>npm install @anka-dev/tracker --save</code></li>
+<li>&#x901A;&#x8FC7; npm &#x5B89;&#x88C5;: <code>$ npm install @anka-dev/tracker --save</code></li>
 <li>&#x4E0B;&#x8F7D;&#x8BE5;&#x4ED3;&#x5E93;&#x4E0B; dist/anka-tracker.min.js &#x6587;&#x4EF6;</li>
 </ul>
 <h2 id="&#x521D;&#x59CB;&#x5316;">&#x521D;&#x59CB;&#x5316;</h2>
@@ -396,8 +396,7 @@
 </code></pre>
 <p>&#x5728; <code>app.js</code> &#x4E2D;&#x5F15;&#x5165; tracker&#xFF1A;</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">/* app.js */</span>
-
-<span class="hljs-keyword">const</span> { tracker } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@anka-dev/tracker&apos;</span>)
+<span class="hljs-keyword">const</span> { tracker } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./anka-tracker.js&apos;</span>)
 </code></pre>
 <p>&#x5E76;&#x5728;&#x6070;&#x5F53;&#x7684;&#x65F6;&#x673A;&#x521D;&#x59CB;&#x5316;&#xFF1A;</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">/* app.js */</span>
@@ -421,7 +420,7 @@ onLaunch (options) {
 },
 </code></pre>
 <p>&#x9664;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x4E4B;&#x5916;&#xFF0C;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x7528;&#x66F4;&#x7075;&#x6D3B;&#x7684;&#x65B9;&#x5F0F;&#x521D;&#x59CB;&#x5316;&#xFF1A;</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { BxTracker } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@anka-dev/tracker&apos;</span>)
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { BxTracker } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./anka-tracker.js&apos;</span>)
 <span class="hljs-keyword">const</span> tracker = BxTracker.generateTrackerInstance({
     <span class="hljs-comment">// &#x5728;&#x8FD9;&#x91CC;&#x4F20;&#x5165;&#x914D;&#x7F6E;&#xFF0C;&#x800C;&#x4E0D;&#x4F7F;&#x7528; anka-tracker.config.js</span>
     detectChanel: <span class="hljs-literal">false</span>,
@@ -442,8 +441,18 @@ getApp().tracker.pv(<span class="hljs-string">&apos;__viewPage&apos;</span>, {
     page_level: <span class="hljs-string">&apos;tabbar_page&apos;</span>
 })
 </code></pre>
-<p>&#x503C;&#x5F97;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x76EE;&#x524D;&#x5728;iOS&#x673A;&#x578B;&#x4E0A;&#xFF0C;&#x5C0F;&#x7A0B;&#x5E8F; <code>onHide</code> &#x4E8B;&#x4EF6;&#x4E2D;&#xFF0C;<code>setTimeout</code> &#x4E0D;&#x4F1A;&#x5728;&#x9884;&#x671F;&#x7684;&#x65F6;&#x95F4;&#x89E6;&#x53D1;&#xFF0C;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x4F1A;&#x88AB;&#x51BB;&#x7ED3;&#x76F4;&#x5230;&#x5C0F;&#x7A0B;&#x5E8F;&#x89E6;&#x53D1; <code>onShow</code> &#x94A9;&#x5B50;&#x3002;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;<code>setTimeout(() =&gt; {console.log(&apos;hello anka!&apos;)}, 2000)</code> &#x4E0D;&#x4F1A;&#x5728;&#x5C0F;&#x7A0B;&#x5E8F; <code>onHide</code> &#x89E6;&#x53D1;&#x540E;&#xFF08;<code>onShow</code> &#x4E4B;&#x524D;&#xFF09;&#x8F93;&#x51FA; <code>hello anka!</code>&#x3002;</p>
-<p>&#x5BF9;&#x4E8E;&#x8FD9;&#x6837;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>forceEvt</code> &#x65B9;&#x6CD5;&#x5F3A;&#x5236;&#x6267;&#x884C;&#x4E00;&#x6B21;&#x6253;&#x70B9;&#x8BF7;&#x6C42;&#x3002;&#x4E0E; <code>evt</code> &#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;<code>forceEvt</code> &#x4F1A;&#x7ACB;&#x523B;&#x6267;&#x884C;&#x8BF7;&#x6C42;&#xFF0C;&#x4E0D;&#x8BBA;&#x6210;&#x529F;&#x4E0E;&#x5426;&#x5747;&#x4E0D;&#x4F1A;&#x91CD;&#x8BD5;&#x3002;&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4E0D;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A; API&#x3002;</p>
+<p>&#x503C;&#x5F97; <strong>&#x6CE8;&#x610F;</strong> &#x7684;&#x662F;&#xFF0C;&#x76EE;&#x524D;&#x5728;iOS&#x673A;&#x578B;&#x4E0A;&#xFF0C;&#x5C0F;&#x7A0B;&#x5E8F; <code>onHide</code> &#x4E8B;&#x4EF6;&#x4E2D;&#xFF0C;<code>setTimeout</code> &#x4E0D;&#x4F1A;&#x5728;&#x9884;&#x671F;&#x7684;&#x65F6;&#x95F4;&#x89E6;&#x53D1;&#xFF0C;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x4F1A;&#x88AB;&#x51BB;&#x7ED3;&#x76F4;&#x5230;&#x5C0F;&#x7A0B;&#x5E8F;&#x89E6;&#x53D1; <code>onShow</code> &#x94A9;&#x5B50;&#x3002;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;</p>
+<pre><code class="lang-javascript">setTimeout(() =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;hello anka!&apos;</span>)
+}, <span class="hljs-number">2000</span>)
+</code></pre>
+<p>&#x4E0D;&#x4F1A;&#x5728;&#x5C0F;&#x7A0B;&#x5E8F; <code>onHide</code> &#x89E6;&#x53D1;&#x540E;&#xFF08;<code>onShow</code> &#x4E4B;&#x524D;&#xFF09;&#x8F93;&#x51FA; <code>hello anka!</code>&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x8FD9;&#x6837;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>forceEvt</code> &#x65B9;&#x6CD5;&#x5F3A;&#x5236;&#x6267;&#x884C;&#x4E00;&#x6B21;&#x6253;&#x70B9;&#x8BF7;&#x6C42;&#x3002;&#x4E0E; <code>evt</code> &#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;<code>forceEvt</code> &#x4F1A;&#x7ACB;&#x523B;&#x6267;&#x884C;&#x8BF7;&#x6C42;&#xFF0C;&#x4E0D;&#x8BBA;&#x6210;&#x529F;&#x4E0E;&#x5426;&#x5747;&#x4E0D;&#x4F1A;&#x91CD;&#x8BD5;&#x3002;&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4E0D;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x6B64; API&#x3002;</p>
+<pre><code class="lang-javascript">getApp().tracker.forceEvt(<span class="hljs-string">&apos;click_btn&apos;</span>, {
+    page_id: <span class="hljs-keyword">this</span>.pageId,
+    custom_data: <span class="hljs-string">&apos;custom_data&apos;</span>
+})
+</code></pre>
 <h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><p><a href="https://github.com/iException/anka-tracker/blob/dev/src/types/BxTracker.d.ts" target="_blank">src/types/BxTracker.d.ts</a></p>
@@ -492,7 +501,7 @@ getApp().tracker.pv(<span class="hljs-string">&apos;__viewPage&apos;</span>, {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Tracker","level":"4.1","depth":1,"previous":{"title":"Brush","level":"3.1","depth":1,"path":"library/brush.md","ref":"./library/brush.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","theme-oasis"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-oasis":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"iException","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"library/tracker.md","mtime":"2018-11-12T12:59:34.901Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-13T17:05:46.967Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Tracker","level":"4.1","depth":1,"previous":{"title":"Brush","level":"3.1","depth":1,"path":"library/brush.md","ref":"./library/brush.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","theme-oasis"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-oasis":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"iException","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"library/tracker.md","mtime":"2018-11-20T13:39:17.857Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-22T14:14:25.709Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
