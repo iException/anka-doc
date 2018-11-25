@@ -1,5 +1,17 @@
 # Anka 配置
 
+AnkaCLI 的默认配置如下所示。如果需要自定义配置，则在项目根目录下添加 `anka.config.js` 或 `anka.config.json` 文件。
+
+```javascript
+/* anka.config.js */
+module.exports = {
+    "components": "./components",
+    "pages": "./pages"
+}
+```
+
+## 详细配置:
+
 ```typescript
 /*****************************************************
  *                   Danger zone

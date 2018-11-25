@@ -525,7 +525,41 @@ Page({
 <li><code>@import &quot;./_var.css&quot;;</code></li>
 <li><code>@wximport &quot;./sub.css&quot;;</code></li>
 </ul>
-<p>&#x987B;&#x77E5;<code>@import</code> &#x8BED;&#x53E5;&#x5FC5;&#x987B; <strong>&#x524D;&#x7F6E;</strong>&#xFF0C;&#x5176;&#x6B21;&#x662F; <code>@wximport</code>&#x3002;&#x5F53;&#x4F7F;&#x7528; <code>@import</code> &#x65F6;&#xFF0C;&#x6587;&#x4EF6;&#x4F1A;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x88AB;&#x5F15;&#x5165;&#xFF0C;&#x4F46;&#x662F;&#x5F53;&#x4F7F;&#x7528; <code>@wximport</code> &#x65F6;&#xFF0C;&#x6587;&#x4EF6;&#x5E76;&#x4E0D;&#x4F1A;&#x88AB;&#x5408;&#x5E76;&#xFF0C;&#x6700;&#x7EC8;&#x8868;&#x73B0;&#x662F;&#xFF1A;<code>@wximport</code> &#x8F6C;&#x5316;&#x4E3A;&#x5FAE;&#x4FE1; <code>wxss</code> &#x7684; <code>@import</code> &#x8BED;&#x6CD5;&#x3002;</p>
+<p>&#x987B;&#x77E5;<code>@import</code> &#x8BED;&#x53E5;&#x5FC5;&#x987B; <strong>&#x524D;&#x7F6E;</strong>&#xFF0C;&#x5176;&#x6B21;&#x662F; <code>@wximport</code>&#x3002;&#x5F53;&#x4F7F;&#x7528; <code>@import</code> &#x65F6;&#xFF0C;&#x6587;&#x4EF6;&#x4F1A;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x88AB;&#x5F15;&#x5165;&#xFF0C;&#x4F46;&#x662F;&#x5F53;&#x4F7F;&#x7528; <code>@wximport</code> &#x65F6;&#xFF0C;&#x6587;&#x4EF6;&#x5E76;&#x4E0D;&#x4F1A;&#x88AB;&#x5408;&#x5E76;&#xFF0C;&#x6700;&#x7EC8;&#x8868;&#x73B0;&#x662F;&#xFF1A;<code>@wximport</code> &#x8F6C;&#x4E3A;&#x5FAE;&#x4FE1; <code>wxss</code> &#x7684; <code>@import</code> &#x8BED;&#x6CD5;&#x3002;</p>
+<pre><code class="lang-scss"><span class="hljs-comment">/* pages/test/test.scss */</span>
+<span class="hljs-variable">$color</span>: red;
+page {
+  <span class="hljs-attribute">color</span>: <span class="hljs-variable">$color</span>;
+}
+</code></pre>
+<pre><code class="lang-css"><span class="hljs-comment">/* pages/test/test.css */</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./_var.css&quot;</span>;
+
+<span class="hljs-comment">/* sub.css &#x4E0D;&#x4F1A;&#x7F16;&#x8BD1;&#x5230; test.css &#x6587;&#x4EF6;&#x4E2D; */</span>
+@<span class="hljs-keyword">wximport</span> <span class="hljs-string">&quot;./sub.css&quot;</span>;
+
+<span class="hljs-selector-tag">page</span> {
+  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--font);
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+}
+</code></pre>
+<p>Dev &#x6A21;&#x5F0F;&#x4E0B;&#x6700;&#x7EC8;&#x4F1A;&#x53D8;&#x6210;:</p>
+<pre><code class="lang-scss"><span class="hljs-comment">/* pages/test/test.wxss */</span>
+page {
+  <span class="hljs-attribute">color</span>: red;
+}
+</code></pre>
+<pre><code class="lang-css"><span class="hljs-comment">/* pages/test/test.swxs */</span>
+<span class="hljs-comment">/* sub.css &#x4E0D;&#x4F1A;&#x7F16;&#x8BD1;&#x5230; test.css &#x6587;&#x4EF6;&#x4E2D; */</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./sub.css&quot;</span>;
+
+<span class="hljs-selector-tag">page</span> {
+  <span class="hljs-attribute">color</span>: red;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+}
+</code></pre>
 <h1 id="es6&#x548C;es6">es6&#x548C;es6+</h1>
 <p>Anka &#x5185;&#x90E8;&#x4F7F;&#x7528;&#x4E86; Babel 7&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4FEE;&#x6539; <code>babel.config.json</code> &#x6765;&#x8986;&#x76D6;&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#xFF08;Babel 7+ &#x9ED8;&#x8BA4;&#x80FD;&#x5904;&#x7406; ES6 &#x8BED;&#x6CD5;&#xFF09;&#x3002;</p>
 <h1 id="typescript">typescript</h1>
@@ -573,7 +607,7 @@ Page({
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"安装CLI","level":"2.1","depth":1,"next":{"title":"创建项目","level":"2.2","depth":1,"anchor":"#初始化项目","path":"cli/index.md","ref":"./cli/index.md#初始化项目","articles":[]},"previous":{"title":"关于Anka","level":"1.1","depth":1,"path":"README.md","ref":"./README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","theme-oasis"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-oasis":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"iException","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"cli/index.md","mtime":"2018-11-20T13:39:17.826Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-22T14:14:25.709Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"安装CLI","level":"2.1","depth":1,"next":{"title":"创建项目","level":"2.2","depth":1,"anchor":"#初始化项目","path":"cli/index.md","ref":"./cli/index.md#初始化项目","articles":[]},"previous":{"title":"关于Anka","level":"1.1","depth":1,"path":"README.md","ref":"./README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","theme-oasis"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-oasis":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"iException","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"cli/index.md","mtime":"2018-11-25T15:24:35.511Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-25T15:29:14.235Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

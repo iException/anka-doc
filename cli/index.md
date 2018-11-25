@@ -231,7 +231,50 @@ Anka 默认支持 PostCSS 和 Sass。
 - `@import "./_var.css";`
 - `@wximport "./sub.css";`
 
-须知`@import` 语句必须 **前置**，其次是 `@wximport`。当使用 `@import` 时，文件会在编译时被引入，但是当使用 `@wximport` 时，文件并不会被合并，最终表现是：`@wximport` 转化为微信 `wxss` 的 `@import` 语法。
+须知`@import` 语句必须 **前置**，其次是 `@wximport`。当使用 `@import` 时，文件会在编译时被引入，但是当使用 `@wximport` 时，文件并不会被合并，最终表现是：`@wximport` 转为微信 `wxss` 的 `@import` 语法。
+
+```scss
+/* pages/test/test.scss */
+$color: red;
+page {
+  color: $color;
+}
+```
+
+```css
+/* pages/test/test.css */
+@import "./_var.css";
+
+/* sub.css 不会编译到 test.css 文件中 */
+@wximport "./sub.css";
+
+page {
+  color: var(--font);
+  height: 100%;
+  width: 100%;
+}
+```
+
+Dev 模式下最终会变成:
+
+```scss
+/* pages/test/test.wxss */
+page {
+  color: red;
+}
+```
+
+```css
+/* pages/test/test.swxs */
+/* sub.css 不会编译到 test.css 文件中 */
+@import "./sub.css";
+
+page {
+  color: red;
+  height: 100%;
+  width: 100%;
+}
+```
 
 # es6和es6+
 
