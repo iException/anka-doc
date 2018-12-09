@@ -15,6 +15,7 @@
     "ncp": "^2.0.0"
   },
   "dependencies": {
-    "gitbook-plugin-theme-oasis": "0.0.2"
+    "gitbook-plugin-theme-oasis": "0.0.2",
+    "lodash": "^4.17.11"
   }
 }
