@@ -27,9 +27,47 @@ anka-tracker 会将打点任务缓存到队列中，对打点任务做限流处�
 以下两种安装方式随意选择:
 
 - 通过 npm 安装: `$ npm install @anka-dev/tracker --save`
-- 下载该仓库下 dist/anka-tracker.min.js 文件
+- 或者下载该仓库，并将 dist/anka-tracker.min.js 文件拷贝至项目内
 
 ## 初始化
+
+anka-tracker 支持两种初始化方式：
+
+### 方式一：使用 npm 安装
+
+在引入 { BxTracker } 后调用 `generateTrackerInstance` 方法创建一个 tracker 实例（此时该实例未初始化）。
+
+```javascript
+const { BxTracker } = require('./anka-tracker.js')
+const trackerConfig = require('[anka-tracker.config.js 文件路径]')
+const tracker = BxTracker.generateTrackerInstance(trackerConfig)
+```
+
+并在恰当的时机调用 `asyncInitWithCommonData` 初始化。需要记住的是：在成功初始化之前，任何打点任务都不会被执行，这些任务会被存入队列，直到 tracker 实例被初始化。
+
+```diff
+/* app.js */
+onLaunch (options) {
+    this.onLaunchOption = options
+    this.tracker = tracker
+
+    wx.login({
+        complete: () => {
+            // 只有初始化成功后才会开始打点请求
+            // demo 里我们选择登录后初始化
++           tracker.asyncInitWithCommonData({
++               // 传入 commonData，这里传入的 commonData 优先级比配置文件中的高
++               open_id: 'mock_open_id',
++               union_id: 'mock_union_id'
++           }).then(() => {
++               console.log('初始化成功，开始执行打点任务')
++           })
+        }
+    })
+},
+```
+
+### 方式二： anka-tracker 拷贝至项目中
 
 将 anka-tracker.min.js 和 配置文件 anka-tracker.config.js 放置在小程序的开发目录中（两者必须在同一文件夹下）
 
@@ -47,7 +85,7 @@ anka-tracker 会将打点任务缓存到队列中，对打点任务做限流处�
   │   └── log
   ├── project.config.json
   └── utils
-  	└── util.js
+      └── util.js
 ```
 
 在 `app.js` 中引入 tracker：
@@ -57,39 +95,22 @@ anka-tracker 会将打点任务缓存到队列中，对打点任务做限流处�
 const { tracker } = require('./anka-tracker.js')
 ```
 
-并在恰当的时机初始化：
+此时已经有一个已经创建好的 tracker 实例，我们可以直接使用它。
 
 ```javascript
-/* app.js */
-onLaunch (options) {
-	this.onLaunchOption = options
-	this.tracker = tracker
-
-	wx.login({
-		complete: () => {
-			// 只有初始化成功后才会开始打点请求
-			// demo 里我们选择登录后初始化
-			tracker.asyncInitWithCommonData({
-				// 传入 commonData
-				open_id: 'mock_open_id',
-				union_id: 'mock_union_id'
-			}).then(() => {
-				console.log('初始化成功，开始执行打点任务')
-			})
-		}
-	})
-},
+tracker.asyncInitWithCommonData({
+    // 传入你想要的 commonData
+}).then(() => {
+    console.log('初始化成功，开始执行打点任务')
+})
 ```
 
-除上面的示例之外，你也可以选择用更灵活的方式初始化：
+当然，你也可以像上面的示例一样，引入 `BxTracker` 手动初始化一个实例。
 
 ```javascript
 const { BxTracker } = require('./anka-tracker.js')
-const tracker = BxTracker.generateTrackerInstance({
-    // 在这里传入配置，而不使用 anka-tracker.config.js
-    detectChanel: false,
-    detectAppStart: true
-})
+const trackerConfig = require('./anka-tracker.config.js')
+const tracker = BxTracker.generateTrackerInstance(trackerConfig)
 ```
 
 ## API
@@ -98,15 +119,15 @@ const tracker = BxTracker.generateTrackerInstance({
 
 ```javascript
 getApp().tracker.evt('click_btn', {
-	page_id: this.pageId,
-	custom_data: 'custom_data'
+    page_id: this.pageId,
+    custom_data: 'custom_data'
 })
 
 getApp().tracker.pv('__viewPage', {
-	page_id: 'log',
-	page_type: 'common',
-	page_title: '详情页',
-	page_level: 'tabbar_page'
+    page_id: 'log',
+    page_type: 'common',
+    page_title: '详情页',
+    page_level: 'tabbar_page'
 })
 ```
 
@@ -114,7 +135,7 @@ getApp().tracker.pv('__viewPage', {
 
 ```javascript
 setTimeout(() => {
-	console.log('hello anka!')
+    console.log('hello anka!')
 }, 2000)
 ```
 
@@ -124,10 +145,104 @@ setTimeout(() => {
 
 ```javascript
 getApp().tracker.forceEvt('click_btn', {
-	page_id: this.pageId,
-	custom_data: 'custom_data'
+    page_id: this.pageId,
+    custom_data: 'custom_data'
 })
 ```
+
+## 配置
+
+
+- `debug?: boolean`， default: `true`
+
+    开启 log 调试
+
+- `httpMethod?: string`， default: `POST`
+
+    sender 发送请求是使用的 HTTP 方法
+
+- `trackerHost?: string`， default: `''`
+
+    数据接收接口，如果为空则不会执行打点任务
+
+- `retry?: number`， default: `2`
+
+    任务失败后的重试次数
+
+- `interval?: number`， default: `1000`
+
+    每组的时间间隔，单位 ms
+
+- `groupMaxLength?: number`， default: `5`
+
+    每组会包含的任务数
+
+- `timestampKey?: string`， default: `timestamp_ms`
+
+    添加到打点数据上的时间戳键名
+
+- `trackIdKey?: string`， default: `__track_id`
+
+    用于追踪每个用户的 ID 键名
+
+- `queueMaxLength?: number`， default: `500`
+
+    队列最大长度，超出后新的任务会被丢弃
+
+- `commonData?: object`， default: `{}`
+
+    可在这里指定一些 common data，每次打点任务会携带这些数据。
+
+- `dataScheme?: object`， default: `{}`
+
+    common data 校验规则，1 required，0 optional。下面的配置中 `user_name` 是选填项，但是 `user_id` 则不可缺少。
+
+    ```javascript
+    commonData: {
+        user_id: 957,
+        uesr_name: 'anka'
+    },
+    dataScheme: {
+        user_id: 1,
+        uesr_name: 0
+    }
+    ```
+
+- `detectChanel?: boolean`， default: `true`
+
+    是否检测渠道参数。渠道参数来自 `onLaunchOption.query[tracker.config.sourceSrcKey]`
+
+- `detectAppStart?: boolean`， default: `true`
+
+    是否捕获启动事件，小游戏上禁用
+
+- `attachActionToUrl?: boolean`， default: `false`
+
+    是否要把 commonData.action 添加到 trackerHost 后。如果设置为 `true`，那么在调用
+
+    ```javascript
+    /**
+     * trackerHost: https://example.com/log
+     */
+    getApp().tracker.evt('click_btn', {
+        custom_data: 'custom_data'
+    })
+    ```
+    后，打点时会请求 `https://example.com/log/click_btn` 接口。
+
+- `autoPageView?: (currentPage: Application, callback: (trackData: TrackData) => void) => void`，default: `undefined`
+
+    劫持 page onShow 方法开启自动 pv 打点，小游戏上禁用
+
+- `sourceSrcKey?: string`，default: `src`
+
+    common data 中 source_src_key 字段值取自 onLaunch 钩子中 options.query[sourceSrcKey] 的值
+
+- `beforeSend?: (data: TrackData) => TrackDat`， default: `undefined`
+
+    请求发送前的自定义处理函数
+
+具体使用方式[见示例](https://github.com/iException/anka-tracker/tree/dev/test)
 
 # 参考
 
