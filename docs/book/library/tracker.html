@@ -375,9 +375,38 @@
 <p>&#x4EE5;&#x4E0B;&#x4E24;&#x79CD;&#x5B89;&#x88C5;&#x65B9;&#x5F0F;&#x968F;&#x610F;&#x9009;&#x62E9;:</p>
 <ul>
 <li>&#x901A;&#x8FC7; npm &#x5B89;&#x88C5;: <code>$ npm install @anka-dev/tracker --save</code></li>
-<li>&#x4E0B;&#x8F7D;&#x8BE5;&#x4ED3;&#x5E93;&#x4E0B; dist/anka-tracker.min.js &#x6587;&#x4EF6;</li>
+<li>&#x6216;&#x8005;&#x4E0B;&#x8F7D;&#x8BE5;&#x4ED3;&#x5E93;&#xFF0C;&#x5E76;&#x5C06; dist/anka-tracker.min.js &#x6587;&#x4EF6;&#x62F7;&#x8D1D;&#x81F3;&#x9879;&#x76EE;&#x5185;</li>
 </ul>
 <h2 id="&#x521D;&#x59CB;&#x5316;">&#x521D;&#x59CB;&#x5316;</h2>
+<p>anka-tracker &#x652F;&#x6301;&#x4E24;&#x79CD;&#x521D;&#x59CB;&#x5316;&#x65B9;&#x5F0F;&#xFF1A;</p>
+<h3 id="&#x65B9;&#x5F0F;&#x4E00;&#xFF1A;&#x4F7F;&#x7528;-npm-&#x5B89;&#x88C5;">&#x65B9;&#x5F0F;&#x4E00;&#xFF1A;&#x4F7F;&#x7528; npm &#x5B89;&#x88C5;</h3>
+<p>&#x5728;&#x5F15;&#x5165; { BxTracker } &#x540E;&#x8C03;&#x7528; <code>generateTrackerInstance</code> &#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; tracker &#x5B9E;&#x4F8B;&#xFF08;&#x6B64;&#x65F6;&#x8BE5;&#x5B9E;&#x4F8B;&#x672A;&#x521D;&#x59CB;&#x5316;&#xFF09;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { BxTracker } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./anka-tracker.js&apos;</span>)
+<span class="hljs-keyword">const</span> trackerConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;[anka-tracker.config.js &#x6587;&#x4EF6;&#x8DEF;&#x5F84;]&apos;</span>)
+<span class="hljs-keyword">const</span> tracker = BxTracker.generateTrackerInstance(trackerConfig)
+</code></pre>
+<p>&#x5E76;&#x5728;&#x6070;&#x5F53;&#x7684;&#x65F6;&#x673A;&#x8C03;&#x7528; <code>asyncInitWithCommonData</code> &#x521D;&#x59CB;&#x5316;&#x3002;&#x9700;&#x8981;&#x8BB0;&#x4F4F;&#x7684;&#x662F;&#xFF1A;&#x5728;&#x6210;&#x529F;&#x521D;&#x59CB;&#x5316;&#x4E4B;&#x524D;&#xFF0C;&#x4EFB;&#x4F55;&#x6253;&#x70B9;&#x4EFB;&#x52A1;&#x90FD;&#x4E0D;&#x4F1A;&#x88AB;&#x6267;&#x884C;&#xFF0C;&#x8FD9;&#x4E9B;&#x4EFB;&#x52A1;&#x4F1A;&#x88AB;&#x5B58;&#x5165;&#x961F;&#x5217;&#xFF0C;&#x76F4;&#x5230; tracker &#x5B9E;&#x4F8B;&#x88AB;&#x521D;&#x59CB;&#x5316;&#x3002;</p>
+<pre><code class="lang-diff">/* app.js */
+onLaunch (options) {
+    this.onLaunchOption = options
+    this.tracker = tracker
+
+    wx.login({
+        complete: () =&gt; {
+            // &#x53EA;&#x6709;&#x521D;&#x59CB;&#x5316;&#x6210;&#x529F;&#x540E;&#x624D;&#x4F1A;&#x5F00;&#x59CB;&#x6253;&#x70B9;&#x8BF7;&#x6C42;
+            // demo &#x91CC;&#x6211;&#x4EEC;&#x9009;&#x62E9;&#x767B;&#x5F55;&#x540E;&#x521D;&#x59CB;&#x5316;
+<span class="hljs-addition">+           tracker.asyncInitWithCommonData({</span>
+<span class="hljs-addition">+               // &#x4F20;&#x5165; commonData&#xFF0C;&#x8FD9;&#x91CC;&#x4F20;&#x5165;&#x7684; commonData &#x4F18;&#x5148;&#x7EA7;&#x6BD4;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x9AD8;</span>
+<span class="hljs-addition">+               open_id: &apos;mock_open_id&apos;,</span>
+<span class="hljs-addition">+               union_id: &apos;mock_union_id&apos;</span>
+<span class="hljs-addition">+           }).then(() =&gt; {</span>
+<span class="hljs-addition">+               console.log(&apos;&#x521D;&#x59CB;&#x5316;&#x6210;&#x529F;&#xFF0C;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x6253;&#x70B9;&#x4EFB;&#x52A1;&apos;)</span>
+<span class="hljs-addition">+           })</span>
+        }
+    })
+},
+</code></pre>
+<h3 id="&#x65B9;&#x5F0F;&#x4E8C;&#xFF1A;-anka-tracker-&#x62F7;&#x8D1D;&#x81F3;&#x9879;&#x76EE;&#x4E2D;">&#x65B9;&#x5F0F;&#x4E8C;&#xFF1A; anka-tracker &#x62F7;&#x8D1D;&#x81F3;&#x9879;&#x76EE;&#x4E2D;</h3>
 <p>&#x5C06; anka-tracker.min.js &#x548C; &#x914D;&#x7F6E;&#x6587;&#x4EF6; anka-tracker.config.js &#x653E;&#x7F6E;&#x5728;&#x5C0F;&#x7A0B;&#x5E8F;&#x7684;&#x5F00;&#x53D1;&#x76EE;&#x5F55;&#x4E2D;&#xFF08;&#x4E24;&#x8005;&#x5FC5;&#x987B;&#x5728;&#x540C;&#x4E00;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#xFF09;</p>
 <pre><code class="lang-diff"><span class="hljs-addition">+ &#x251C;&#x2500;&#x2500; anka-tracker.config.js</span>
 <span class="hljs-addition">+ &#x251C;&#x2500;&#x2500; anka-tracker.js</span>
@@ -398,34 +427,17 @@
 <pre><code class="lang-javascript"><span class="hljs-comment">/* app.js */</span>
 <span class="hljs-keyword">const</span> { tracker } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./anka-tracker.js&apos;</span>)
 </code></pre>
-<p>&#x5E76;&#x5728;&#x6070;&#x5F53;&#x7684;&#x65F6;&#x673A;&#x521D;&#x59CB;&#x5316;&#xFF1A;</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">/* app.js */</span>
-onLaunch (options) {
-    <span class="hljs-keyword">this</span>.onLaunchOption = options
-    <span class="hljs-keyword">this</span>.tracker = tracker
-
-    wx.login({
-        complete: () =&gt; {
-            <span class="hljs-comment">// &#x53EA;&#x6709;&#x521D;&#x59CB;&#x5316;&#x6210;&#x529F;&#x540E;&#x624D;&#x4F1A;&#x5F00;&#x59CB;&#x6253;&#x70B9;&#x8BF7;&#x6C42;</span>
-            <span class="hljs-comment">// demo &#x91CC;&#x6211;&#x4EEC;&#x9009;&#x62E9;&#x767B;&#x5F55;&#x540E;&#x521D;&#x59CB;&#x5316;</span>
-            tracker.asyncInitWithCommonData({
-                <span class="hljs-comment">// &#x4F20;&#x5165; commonData</span>
-                open_id: <span class="hljs-string">&apos;mock_open_id&apos;</span>,
-                union_id: <span class="hljs-string">&apos;mock_union_id&apos;</span>
-            }).then(() =&gt; {
-                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;&#x521D;&#x59CB;&#x5316;&#x6210;&#x529F;&#xFF0C;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x6253;&#x70B9;&#x4EFB;&#x52A1;&apos;</span>)
-            })
-        }
-    })
-},
-</code></pre>
-<p>&#x9664;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x4E4B;&#x5916;&#xFF0C;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x7528;&#x66F4;&#x7075;&#x6D3B;&#x7684;&#x65B9;&#x5F0F;&#x521D;&#x59CB;&#x5316;&#xFF1A;</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { BxTracker } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./anka-tracker.js&apos;</span>)
-<span class="hljs-keyword">const</span> tracker = BxTracker.generateTrackerInstance({
-    <span class="hljs-comment">// &#x5728;&#x8FD9;&#x91CC;&#x4F20;&#x5165;&#x914D;&#x7F6E;&#xFF0C;&#x800C;&#x4E0D;&#x4F7F;&#x7528; anka-tracker.config.js</span>
-    detectChanel: <span class="hljs-literal">false</span>,
-    detectAppStart: <span class="hljs-literal">true</span>
+<p>&#x6B64;&#x65F6;&#x5DF2;&#x7ECF;&#x6709;&#x4E00;&#x4E2A;&#x5DF2;&#x7ECF;&#x521B;&#x5EFA;&#x597D;&#x7684; tracker &#x5B9E;&#x4F8B;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5B83;&#x3002;</p>
+<pre><code class="lang-javascript">tracker.asyncInitWithCommonData({
+    <span class="hljs-comment">// &#x4F20;&#x5165;&#x4F60;&#x60F3;&#x8981;&#x7684; commonData</span>
+}).then(() =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;&#x521D;&#x59CB;&#x5316;&#x6210;&#x529F;&#xFF0C;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x6253;&#x70B9;&#x4EFB;&#x52A1;&apos;</span>)
 })
+</code></pre>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x50CF;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x4E00;&#x6837;&#xFF0C;&#x5F15;&#x5165; <code>BxTracker</code> &#x624B;&#x52A8;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { BxTracker } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./anka-tracker.js&apos;</span>)
+<span class="hljs-keyword">const</span> trackerConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./anka-tracker.config.js&apos;</span>)
+<span class="hljs-keyword">const</span> tracker = BxTracker.generateTrackerInstance(trackerConfig)
 </code></pre>
 <h2 id="api">API</h2>
 <p>&#x63D0;&#x4F9B;&#x4E24;&#x4E2A;&#x901A;&#x7528;&#x6253;&#x70B9; API &#x4F9B;&#x5F00;&#x53D1;&#x8005;&#x4F7F;&#x7528;&#xFF0C;&#x5EFA;&#x8BAE;&#x914D;&#x7F6E; <code>autoPageView</code> &#x4F7F;&#x7528;&#x81EA;&#x52A8;&#x6253;&#x70B9;&#x3002;</p>
@@ -453,6 +465,78 @@ getApp().tracker.pv(<span class="hljs-string">&apos;__viewPage&apos;</span>, {
     custom_data: <span class="hljs-string">&apos;custom_data&apos;</span>
 })
 </code></pre>
+<h2 id="&#x914D;&#x7F6E;">&#x914D;&#x7F6E;</h2>
+<ul>
+<li><p><code>debug?: boolean</code>&#xFF0C; default: <code>true</code></p>
+<p>  &#x5F00;&#x542F; log &#x8C03;&#x8BD5;</p>
+</li>
+<li><p><code>httpMethod?: string</code>&#xFF0C; default: <code>POST</code></p>
+<p>  sender &#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x662F;&#x4F7F;&#x7528;&#x7684; HTTP &#x65B9;&#x6CD5;</p>
+</li>
+<li><p><code>trackerHost?: string</code>&#xFF0C; default: <code>&apos;&apos;</code></p>
+<p>  &#x6570;&#x636E;&#x63A5;&#x6536;&#x63A5;&#x53E3;&#xFF0C;&#x5982;&#x679C;&#x4E3A;&#x7A7A;&#x5219;&#x4E0D;&#x4F1A;&#x6267;&#x884C;&#x6253;&#x70B9;&#x4EFB;&#x52A1;</p>
+</li>
+<li><p><code>retry?: number</code>&#xFF0C; default: <code>2</code></p>
+<p>  &#x4EFB;&#x52A1;&#x5931;&#x8D25;&#x540E;&#x7684;&#x91CD;&#x8BD5;&#x6B21;&#x6570;</p>
+</li>
+<li><p><code>interval?: number</code>&#xFF0C; default: <code>1000</code></p>
+<p>  &#x6BCF;&#x7EC4;&#x7684;&#x65F6;&#x95F4;&#x95F4;&#x9694;&#xFF0C;&#x5355;&#x4F4D; ms</p>
+</li>
+<li><p><code>groupMaxLength?: number</code>&#xFF0C; default: <code>5</code></p>
+<p>  &#x6BCF;&#x7EC4;&#x4F1A;&#x5305;&#x542B;&#x7684;&#x4EFB;&#x52A1;&#x6570;</p>
+</li>
+<li><p><code>timestampKey?: string</code>&#xFF0C; default: <code>timestamp_ms</code></p>
+<p>  &#x6DFB;&#x52A0;&#x5230;&#x6253;&#x70B9;&#x6570;&#x636E;&#x4E0A;&#x7684;&#x65F6;&#x95F4;&#x6233;&#x952E;&#x540D;</p>
+</li>
+<li><p><code>trackIdKey?: string</code>&#xFF0C; default: <code>__track_id</code></p>
+<p>  &#x7528;&#x4E8E;&#x8FFD;&#x8E2A;&#x6BCF;&#x4E2A;&#x7528;&#x6237;&#x7684; ID &#x952E;&#x540D;</p>
+</li>
+<li><p><code>queueMaxLength?: number</code>&#xFF0C; default: <code>500</code></p>
+<p>  &#x961F;&#x5217;&#x6700;&#x5927;&#x957F;&#x5EA6;&#xFF0C;&#x8D85;&#x51FA;&#x540E;&#x65B0;&#x7684;&#x4EFB;&#x52A1;&#x4F1A;&#x88AB;&#x4E22;&#x5F03;</p>
+</li>
+<li><p><code>commonData?: object</code>&#xFF0C; default: <code>{}</code></p>
+<p>  &#x53EF;&#x5728;&#x8FD9;&#x91CC;&#x6307;&#x5B9A;&#x4E00;&#x4E9B; common data&#xFF0C;&#x6BCF;&#x6B21;&#x6253;&#x70B9;&#x4EFB;&#x52A1;&#x4F1A;&#x643A;&#x5E26;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x3002;</p>
+</li>
+<li><p><code>dataScheme?: object</code>&#xFF0C; default: <code>{}</code></p>
+<p>  common data &#x6821;&#x9A8C;&#x89C4;&#x5219;&#xFF0C;1 required&#xFF0C;0 optional&#x3002;&#x4E0B;&#x9762;&#x7684;&#x914D;&#x7F6E;&#x4E2D; <code>user_name</code> &#x662F;&#x9009;&#x586B;&#x9879;&#xFF0C;&#x4F46;&#x662F; <code>user_id</code> &#x5219;&#x4E0D;&#x53EF;&#x7F3A;&#x5C11;&#x3002;</p>
+<pre><code class="lang-javascript">  commonData: {
+      user_id: <span class="hljs-number">957</span>,
+      uesr_name: <span class="hljs-string">&apos;anka&apos;</span>
+  },
+  dataScheme: {
+      user_id: <span class="hljs-number">1</span>,
+      uesr_name: <span class="hljs-number">0</span>
+  }
+</code></pre>
+</li>
+<li><p><code>detectChanel?: boolean</code>&#xFF0C; default: <code>true</code></p>
+<p>  &#x662F;&#x5426;&#x68C0;&#x6D4B;&#x6E20;&#x9053;&#x53C2;&#x6570;&#x3002;&#x6E20;&#x9053;&#x53C2;&#x6570;&#x6765;&#x81EA; <code>onLaunchOption.query[tracker.config.sourceSrcKey]</code></p>
+</li>
+<li><p><code>detectAppStart?: boolean</code>&#xFF0C; default: <code>true</code></p>
+<p>  &#x662F;&#x5426;&#x6355;&#x83B7;&#x542F;&#x52A8;&#x4E8B;&#x4EF6;&#xFF0C;&#x5C0F;&#x6E38;&#x620F;&#x4E0A;&#x7981;&#x7528;</p>
+</li>
+<li><p><code>attachActionToUrl?: boolean</code>&#xFF0C; default: <code>false</code></p>
+<p>  &#x662F;&#x5426;&#x8981;&#x628A; commonData.action &#x6DFB;&#x52A0;&#x5230; trackerHost &#x540E;&#x3002;&#x5982;&#x679C;&#x8BBE;&#x7F6E;&#x4E3A; <code>true</code>&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x8C03;&#x7528;</p>
+<pre><code class="lang-javascript">  <span class="hljs-comment">/**
+   * trackerHost: https://example.com/log
+   */</span>
+  getApp().tracker.evt(<span class="hljs-string">&apos;click_btn&apos;</span>, {
+      custom_data: <span class="hljs-string">&apos;custom_data&apos;</span>
+  })
+</code></pre>
+<p>  &#x540E;&#xFF0C;&#x6253;&#x70B9;&#x65F6;&#x4F1A;&#x8BF7;&#x6C42; <code>https://example.com/log/click_btn</code> &#x63A5;&#x53E3;&#x3002;</p>
+</li>
+<li><p><code>autoPageView?: (currentPage: Application, callback: (trackData: TrackData) =&gt; void) =&gt; void</code>&#xFF0C;default: <code>undefined</code></p>
+<p>  &#x52AB;&#x6301; page onShow &#x65B9;&#x6CD5;&#x5F00;&#x542F;&#x81EA;&#x52A8; pv &#x6253;&#x70B9;&#xFF0C;&#x5C0F;&#x6E38;&#x620F;&#x4E0A;&#x7981;&#x7528;</p>
+</li>
+<li><p><code>sourceSrcKey?: string</code>&#xFF0C;default: <code>src</code></p>
+<p>  common data &#x4E2D; source_src_key &#x5B57;&#x6BB5;&#x503C;&#x53D6;&#x81EA; onLaunch &#x94A9;&#x5B50;&#x4E2D; options.query[sourceSrcKey] &#x7684;&#x503C;</p>
+</li>
+<li><p><code>beforeSend?: (data: TrackData) =&gt; TrackDat</code>&#xFF0C; default: <code>undefined</code></p>
+<p>  &#x8BF7;&#x6C42;&#x53D1;&#x9001;&#x524D;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x5904;&#x7406;&#x51FD;&#x6570;</p>
+</li>
+</ul>
+<p>&#x5177;&#x4F53;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;<a href="https://github.com/iException/anka-tracker/tree/dev/test" target="_blank">&#x89C1;&#x793A;&#x4F8B;</a></p>
 <h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><p><a href="https://github.com/iException/anka-tracker/blob/dev/src/types/BxTracker.d.ts" target="_blank">src/types/BxTracker.d.ts</a></p>
@@ -501,7 +585,7 @@ getApp().tracker.pv(<span class="hljs-string">&apos;__viewPage&apos;</span>, {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Tracker","level":"4.1","depth":1,"previous":{"title":"Brush","level":"3.1","depth":1,"path":"library/brush.md","ref":"./library/brush.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","theme-oasis"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-oasis":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"iException","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"library/tracker.md","mtime":"2018-11-20T13:39:17.857Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-25T15:29:14.235Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Tracker","level":"4.1","depth":1,"previous":{"title":"Brush","level":"3.1","depth":1,"path":"library/brush.md","ref":"./library/brush.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","theme-oasis"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-oasis":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"iException","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"library/tracker.md","mtime":"2018-12-20T16:36:54.105Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-20T16:37:41.518Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
